@@ -60,7 +60,37 @@ project_folder/
 ├── app.py (your Flask application)
 └── requirements.txt
 ```
+## Algorithm
 
+The following steps outline the algorithm used in the `app.py` file to generate the research report:
+
+1. **Receive User Input:**
+    - The user inputs a research topic via a form on the web page.
+
+2. **Generate Queries:**
+    - The `generate_queries` function is called with the input topic.
+    - A prompt is sent to OpenAI to generate three relevant search queries based on the topic.
+    - The function returns these queries in JSON format.
+
+3. **Fetch Research Data:**
+    - The `research_query` function is called for each of the generated queries.
+    - This function uses the YOU.com API to fetch snippets of information for each query.
+    - The responses are collected and returned as JSON.
+
+4. **Merge Responses:**
+    - The `merge_responses` function combines the snippets of information from the YOU.com API responses into a single string of merged content.
+
+5. **Generate Report:**
+    - The `generate_report` function is called with the topic and merged content.
+    - A prompt is sent to OpenAI to generate a detailed HTML report based on the merged content.
+    - The function returns the generated HTML report as a string.
+
+6. **Save Report:**
+    - The generated HTML report is saved as a file in the `static` folder with a filename based on the topic.
+
+7. **Provide Report Link:**
+    - A link to the saved HTML report is generated and returned to the user.
+    - The user can click the link to view the detailed research report in a new web page.
 ## Usage
 
 1. **Run the Flask Application:**
@@ -92,9 +122,6 @@ This file contains the Flask application logic, including:
 - **Home Route:** Renders the `index.html` template.
 - **Generate Report Route:** Handles the form submission, generates queries, fetches research data, merges content, generates the report using OpenAI, and saves the report as an HTML file in the `static` folder.
 
-## Example
-
-![Research Report Generator](screenshot.png)
 
 ## Contributing
 
