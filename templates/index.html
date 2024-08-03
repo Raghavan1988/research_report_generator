@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Research Report Generator</title>
+</head>
+<body>
+    <h1>Research Report Generator</h1>
+    <form id="report-form">
+        <label for="topic">Enter the topic you want to research:</label>
+        <input type="text" id="topic" name="topic">
+        <button type="submit">Generate Report</button>
+    </form>
+    <h2>Generated Report</h2>
+    <div id="report-link"></div>
+    
+    <script>
+        document.getElementById('report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const topic = document.getElementById('topic').value;
+            
+            fetch('/generate_report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ topic: topic }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('report-link').innerHTML = `<p style="color: red;">${data.error}</p>`;
+                } else {
+                    document.getElementById('report-link').innerHTML = `<a href="${data.report_url}" target="_blank">Open Generated Report</a>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
