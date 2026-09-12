@@ -79,8 +79,8 @@ def health():
 @app.route('/generate_report', methods=['POST'])
 def generate_report_route():
     data = request.json
-    topic = data.get('topic')
-    
+    topic = (data.get('topic') or '').strip()
+
     if not topic:
         return jsonify({"error": "Please provide a topic"}), 400
 
