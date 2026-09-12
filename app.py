@@ -76,6 +76,10 @@ def home():
 def health():
     return jsonify({"status": "ok"})
 
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"error": "Not found"}), 404
+
 @app.route('/generate_report', methods=['POST'])
 def generate_report_route():
     data = request.json
