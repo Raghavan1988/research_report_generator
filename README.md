@@ -120,6 +120,18 @@ The following steps outline the algorithm used in the `app.py` file to generate 
     - Click on "Generate Report."
     - Once the report is generated, click on the provided link to view the report.
 
+## Deployment
+
+The project ships with a `Procfile` and a `Dockerfile` for production deployment.
+
+- **Gunicorn / Procfile hosts:** the `Procfile` runs `gunicorn app:app`.
+- **Docker:**
+
+    ```bash
+    docker build -t research-report-generator .
+    docker run -p 5000:5000 --env-file .env research-report-generator
+    ```
+
 ## Code Explanation
 
 ### `templates/index.html`
