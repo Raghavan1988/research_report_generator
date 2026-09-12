@@ -44,7 +44,15 @@ The Research Report Generator is a web application built using Flask that allows
     - OpenAI API Key
     - YOU.com API Key
 
-    Update the `app.py` file with your API keys.
+    Set them as environment variables (see below) rather than editing `app.py`.
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and fill in your values:
+
+- `OPENAI_API_KEY` — your OpenAI API key.
+- `YOU_COM_API_KEY` — your YOU.com API key.
+- `PORT` — port for the Flask server (optional, defaults to `5000`).
 
 ## Folder Structure
 
