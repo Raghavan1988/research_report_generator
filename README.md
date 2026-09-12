@@ -22,8 +22,8 @@ The Research Report Generator is a web application built using Flask that allows
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/yourusername/research-report-generator.git
-    cd research-report-generator
+    git clone https://github.com/Raghavan1988/research_report_generator.git
+    cd research_report_generator
     ```
 
 2. **Create a Virtual Environment:**
