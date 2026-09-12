@@ -1,5 +1,8 @@
 # Research Report Generator
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)
+
 ## Overview
 
 The Research Report Generator is a web application built using Flask that allows users to generate detailed research reports based on a given topic. The application leverages OpenAI and YOU.com API to fetch and compile information into a comprehensive report.
