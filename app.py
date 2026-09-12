@@ -72,6 +72,10 @@ def generate_report(topic, merged_content):
 def home():
     return render_template('index.html')
 
+@app.route('/health')
+def health():
+    return jsonify({"status": "ok"})
+
 @app.route('/generate_report', methods=['POST'])
 def generate_report_route():
     data = request.json
