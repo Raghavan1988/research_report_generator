@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template, url_for
+import os
 import requests
 import json
 from openai import OpenAI
@@ -8,7 +9,7 @@ client = OpenAI()
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 # Set your OpenAI and YOU.com API keys
-you_com_api_key = ''
+you_com_api_key = os.environ.get('YOU_COM_API_KEY', '')
 
 def generate_queries(topic):
     prompt = f"You are going to create a research report. Understand the topic {topic}. Inorder to understand the topic, think about the queries that you would issue to a web search. \
