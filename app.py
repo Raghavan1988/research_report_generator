@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, url_for
 import os
+import re
 import requests
 import json
 from openai import OpenAI
@@ -111,11 +112,12 @@ def generate_report_route():
     report = report.replace("```","")
     
     # Save report to HTML file in static folder
-    report_filename = f'static/report_{topic}.html'
+    safe_topic = re.sub(r'[^A-Za-z0-9_-]+', '_', topic).strip('_') or 'report'
+    report_filename = f'static/report_{safe_topic}.html'
     with open(report_filename, 'w') as file:
         file.write(report)
     
-    report_url = url_for('static', filename=f'report_{topic}.html')
+    report_url = url_for('static', filename=f'report_{safe_topic}.html')
     return jsonify({"report_url": report_url})
 
 if __name__ == '__main__':
