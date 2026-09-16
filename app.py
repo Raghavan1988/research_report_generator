@@ -93,7 +93,10 @@ def generate_report_route():
     
     # Research each query using YOU.com
     responses = []
-    queries = [queries["q1"],queries["q2"],queries["q3"]]
+    queries = [queries.get("q1"), queries.get("q2"), queries.get("q3")]
+    queries = [q for q in queries if q]
+    if not queries:
+        queries = [topic]
     for query in queries:
         responses.append(research_query(query))
     
