@@ -48,9 +48,10 @@ def get_ai_snippets_for_query(query):
     headers = {"X-API-Key": you_com_api_key}
     params = {"query": query}
     return requests.get(
-        f"https://api.ydc-index.io/search?query={query}",
+        "https://api.ydc-index.io/search",
         params=params,
         headers=headers,
+        timeout=30,
     ).json()
 
 def research_query(query):
