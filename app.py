@@ -81,6 +81,10 @@ def health():
 def not_found(error):
     return jsonify({"error": "Not found"}), 404
 
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({"error": "Internal server error"}), 500
+
 @app.route('/generate_report', methods=['POST'])
 def generate_report_route():
     data = request.json
