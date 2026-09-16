@@ -14,6 +14,9 @@ logger = logging.getLogger(__name__)
 # Initialize Flask app
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
+# Reject request bodies larger than 1 MB
+app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
+
 # Set your OpenAI and YOU.com API keys
 you_com_api_key = os.environ.get('YOU_COM_API_KEY', '')
 
