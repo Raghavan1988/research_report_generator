@@ -1,10 +1,15 @@
 from flask import Flask, request, jsonify, render_template, url_for
 import os
 import re
+import logging
 import requests
 import json
 from openai import OpenAI
 client = OpenAI()
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+logger = logging.getLogger(__name__)
 
 # Initialize Flask app
 app = Flask(__name__, static_folder='static', static_url_path='/static')
@@ -27,7 +32,7 @@ def generate_queries(topic):
         gpt4o_response = gpt4o_response.replace("```json", "")
         gpt4o_response = gpt4o_response.replace("```", "")
 
-    print(gpt4o_response)
+    logger.info("Generated queries: %s", gpt4o_response)
     try:
         D = json.loads(gpt4o_response.strip())
     except:
@@ -107,11 +112,11 @@ def generate_report_route():
     
     # Merge responses
     merged_content = " ".join(responses)
-    print(merged_content)
+    logger.info("Merged content length: %d chars", len(merged_content))
     
     # Generate report
     report = generate_report(topic, merged_content)
-    print(report)
+    logger.info("Generated report (%d chars)", len(report))
     report = report.replace("```html","")
     report = report.replace("```","")
     
