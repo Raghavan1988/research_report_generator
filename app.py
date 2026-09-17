@@ -27,6 +27,9 @@ app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 # Set your OpenAI and YOU.com API keys
 you_com_api_key = os.environ.get('YOU_COM_API_KEY', '')
 
+# OpenAI model used for both query generation and report writing
+OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4o-mini')
+
 def generate_queries(topic):
     prompt = f"You are going to create a research report. Understand the topic {topic}. Inorder to understand the topic, think about the queries that you would issue to a web search. \
     Generate 3 queries and return them in a json format following the schema \
@@ -36,7 +39,7 @@ def generate_queries(topic):
        q2:String \
        q3:String "
     
-    response = client.chat.completions.create(model="gpt-4o-mini",messages=[{"role": "system", "content": "You are an assistant who is going to research on a TOPIC"},{"role": "user", "content": prompt}, ])
+    response = client.chat.completions.create(model=OPENAI_MODEL,messages=[{"role": "system", "content": "You are an assistant who is going to research on a TOPIC"},{"role": "user", "content": prompt}, ])
     gpt4o_response =  response.choices[0].message.content
     if "```" in gpt4o_response:
         gpt4o_response = gpt4o_response.replace("```json", "")
@@ -81,7 +84,7 @@ def generate_report(topic, merged_content):
           The content should not overflow and should be WORD WRAPPED without having to scroll horizontally\
           Generate Introduction,  several sub topics, Conclusion. \n\n MERGED CONTENT {merged_content}"
     
-    response = client.chat.completions.create(model="gpt-4o-mini",messages=[{"role": "system", "content": "You are a RESEARCH REPORT WRITER"},{"role": "user", "content": prompt}, ])
+    response = client.chat.completions.create(model=OPENAI_MODEL,messages=[{"role": "system", "content": "You are a RESEARCH REPORT WRITER"},{"role": "user", "content": prompt}, ])
    
     return response.choices[0].message.content.strip()
 
