@@ -13,3 +13,9 @@ env/
 
 # Generated reports
 static/report_*.html
+
+# Editor and OS artifacts
+.vscode/
+.idea/
+.DS_Store
+*.swp
