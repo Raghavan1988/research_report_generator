@@ -1,3 +1,10 @@
+"""Research Report Generator.
+
+A small Flask application that turns a user-supplied topic into a detailed
+HTML research report. It generates search queries with OpenAI, fetches
+supporting snippets from the YOU.com API, and asks OpenAI to compile the
+merged content into a formatted report served from the ``static`` folder.
+"""
 from flask import Flask, request, jsonify, render_template, url_for
 import os
 import re
