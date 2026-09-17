@@ -96,6 +96,10 @@ def home():
 def health():
     return jsonify({"status": "ok"})
 
+@app.route('/version')
+def version():
+    return jsonify({"name": "research-report-generator", "version": "1.0.0"})
+
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({"error": "Not found"}), 404
