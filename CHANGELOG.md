@@ -15,10 +15,18 @@ All notable changes to this project are documented in this file.
 - Test suite covering the health, version, and error routes.
 - Module docstring describing the application.
 - Table of contents in the README.
+- API endpoints documentation in the README.
+- Docker healthcheck against the `/health` endpoint.
+- Non-root user in the Docker image.
+- Loading state and client-side error handling on the report form.
+- Responsive styling and mobile viewport for the web interface.
+- "Running tests" instructions in `CONTRIBUTING.md`.
 - JSON error handler for `500` responses.
 - Request body size limit of 1 MB.
 
 ### Changed
+- Report generation now returns a `502` response when upstream services fail.
+- Topic input is now required and includes a placeholder hint.
 - YOU.com API key is now read from the `YOU_COM_API_KEY` environment variable.
 - Server port is now configurable via the `PORT` environment variable.
 - OpenAI model is now configurable via the `OPENAI_MODEL` environment variable.
