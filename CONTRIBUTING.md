@@ -19,6 +19,16 @@ Thanks for your interest in improving the Research Report Generator!
 - Keep commits small and focused, with clear messages.
 - Make sure the app still starts (`python app.py`) before opening a pull request.
 
+## Running tests
+
+Install the dependencies and run the test suite before opening a pull request:
+
+```bash
+make test
+```
+
+This runs the tests under `tests/` with `pytest`.
+
 ## Pull requests
 
 - Describe what your change does and why.
