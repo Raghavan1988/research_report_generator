@@ -116,24 +116,29 @@ def generate_report_route():
     if not topic:
         return jsonify({"error": "Please provide a topic"}), 400
 
-    # Generate queries
-    queries = generate_queries(topic)
-    
-    # Research each query using YOU.com
-    responses = []
-    queries = [queries.get("q1"), queries.get("q2"), queries.get("q3")]
-    queries = [q for q in queries if q]
-    if not queries:
-        queries = [topic]
-    for query in queries:
-        responses.append(research_query(query))
-    
-    # Merge responses
-    merged_content = " ".join(responses)
-    logger.info("Merged content length: %d chars", len(merged_content))
-    
-    # Generate report
-    report = generate_report(topic, merged_content)
+    try:
+        # Generate queries
+        queries = generate_queries(topic)
+
+        # Research each query using YOU.com
+        responses = []
+        queries = [queries.get("q1"), queries.get("q2"), queries.get("q3")]
+        queries = [q for q in queries if q]
+        if not queries:
+            queries = [topic]
+        for query in queries:
+            responses.append(research_query(query))
+
+        # Merge responses
+        merged_content = " ".join(responses)
+        logger.info("Merged content length: %d chars", len(merged_content))
+
+        # Generate report
+        report = generate_report(topic, merged_content)
+    except Exception:
+        logger.exception("Failed to generate report for topic: %s", topic)
+        return jsonify({"error": "Failed to generate report from upstream services"}), 502
+
     logger.info("Generated report (%d chars)", len(report))
     report = report.replace("```html","")
     report = report.replace("```","")
