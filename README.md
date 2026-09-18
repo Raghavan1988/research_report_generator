@@ -13,6 +13,7 @@
 - [Folder Structure](#folder-structure)
 - [Algorithm](#algorithm)
 - [Usage](#usage)
+- [API Endpoints](#api-endpoints)
 - [Deployment](#deployment)
 - [Code Explanation](#code-explanation)
 - [Contributing](#contributing)
@@ -134,6 +135,15 @@ The following steps outline the algorithm used in the `app.py` file to generate 
     - Enter the topic you want to research.
     - Click on "Generate Report."
     - Once the report is generated, click on the provided link to view the report.
+
+## API Endpoints
+
+| Method | Path               | Description                                             |
+| ------ | ------------------ | ------------------------------------------------------- |
+| `GET`  | `/`                | Renders the web interface.                              |
+| `POST` | `/generate_report` | Generates a report for a JSON body `{"topic": "..."}`.  |
+| `GET`  | `/health`          | Readiness check, returns `{"status": "ok"}`.            |
+| `GET`  | `/version`         | Returns the application name and version.               |
 
 ## Deployment
 
