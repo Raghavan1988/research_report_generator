@@ -59,9 +59,14 @@
     <script>
         document.getElementById('report-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const topic = document.getElementById('topic').value;
-            
+            const button = this.querySelector('button');
+            const output = document.getElementById('report-link');
+
+            button.disabled = true;
+            output.innerHTML = '<p>Generating report, this may take a moment…</p>';
+
             fetch('/generate_report', {
                 method: 'POST',
                 headers: {
@@ -72,10 +77,16 @@
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
-                    document.getElementById('report-link').innerHTML = `<p style="color: red;">${data.error}</p>`;
+                    output.innerHTML = `<p style="color: red;">${data.error}</p>`;
                 } else {
-                    document.getElementById('report-link').innerHTML = `<a href="${data.report_url}" target="_blank">Open Generated Report</a>`;
+                    output.innerHTML = `<a href="${data.report_url}" target="_blank">Open Generated Report</a>`;
                 }
+            })
+            .catch(() => {
+                output.innerHTML = '<p style="color: red;">Something went wrong. Please try again.</p>';
+            })
+            .finally(() => {
+                button.disabled = false;
             });
         });
     </script>
