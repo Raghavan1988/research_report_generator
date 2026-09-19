@@ -1,4 +1,7 @@
 Flask==2.0.3
 requests==2.26.0
 openai>=1.0.0
+# httpx 0.28 removed the `proxies` argument that openai 1.6.x still passes,
+# which breaks the OpenAI client at import time. Pin below that release.
+httpx<0.28
 gunicorn==21.2.0
