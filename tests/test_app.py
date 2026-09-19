@@ -13,6 +13,13 @@ def test_health():
     assert response.get_json() == {"status": "ok"}
 
 
+def test_home_page_renders():
+    client = app.test_client()
+    response = client.get("/")
+    assert response.status_code == 200
+    assert b"Research Report Generator" in response.data
+
+
 def test_version():
     client = app.test_client()
     response = client.get("/version")
