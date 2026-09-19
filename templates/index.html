@@ -44,6 +44,16 @@
             background: #9ca3af;
             cursor: not-allowed;
         }
+        footer {
+            margin-top: 40px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        footer a {
+            color: #2563eb;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +65,11 @@
     </form>
     <h2>Generated Report</h2>
     <div id="report-link"></div>
-    
+
+    <footer>
+        <a href="https://github.com/Raghavan1988/research_report_generator" target="_blank" rel="noopener">View this project on GitHub</a>
+    </footer>
+
     <script>
         document.getElementById('report-form').addEventListener('submit', function(e) {
             e.preventDefault();
