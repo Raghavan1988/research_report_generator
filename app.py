@@ -14,6 +14,9 @@ import json
 from openai import OpenAI
 client = OpenAI()
 
+# Single source of truth for the application version.
+__version__ = "1.0.0"
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 logger = logging.getLogger(__name__)
@@ -98,7 +101,7 @@ def health():
 
 @app.route('/version')
 def version():
-    return jsonify({"name": "research-report-generator", "version": "1.0.0"})
+    return jsonify({"name": "research-report-generator", "version": __version__})
 
 @app.errorhandler(404)
 def not_found(error):
