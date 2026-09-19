@@ -71,7 +71,10 @@ Copy `.env.example` to `.env` and fill in your values:
 
 - `OPENAI_API_KEY` — your OpenAI API key.
 - `YOU_COM_API_KEY` — your YOU.com API key.
+- `OPENAI_MODEL` — OpenAI model for query generation and report writing (optional, defaults to `gpt-4o-mini`).
 - `PORT` — port for the Flask server (optional, defaults to `5000`).
+- `FLASK_DEBUG` — enable Flask debug mode (optional, defaults to `true`).
+- `LOG_LEVEL` — logging verbosity: `DEBUG`, `INFO`, `WARNING`, `ERROR`, or `CRITICAL` (optional, defaults to `INFO`).
 
 ## Folder Structure
 
