@@ -17,8 +17,10 @@ client = OpenAI()
 # Single source of truth for the application version.
 __version__ = "1.0.0"
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+# Configure logging (level configurable via the LOG_LEVEL environment variable)
+log_level = os.environ.get('LOG_LEVEL', 'INFO').upper()
+logging.basicConfig(level=getattr(logging, log_level, logging.INFO),
+                    format='%(asctime)s %(levelname)s %(message)s')
 logger = logging.getLogger(__name__)
 
 # Initialize Flask app
