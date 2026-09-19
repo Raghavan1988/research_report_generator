@@ -23,8 +23,17 @@ All notable changes to this project are documented in this file.
 - "Running tests" instructions in `CONTRIBUTING.md`.
 - JSON error handler for `500` responses.
 - Request body size limit of 1 MB.
+- Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`) on all responses.
+- Configurable logging level via the `LOG_LEVEL` environment variable.
+- Footer with a GitHub repository link in the web interface.
+- Test covering the home page route.
+- `help` and `freeze` targets in the `Makefile`.
+- Documentation for all configurable environment variables in the README.
 
 ### Changed
+- Pinned `httpx` below `0.28` to keep the OpenAI client importable.
+- The `/version` endpoint now reports a single `__version__` constant.
+- Docker image sets `PYTHONUNBUFFERED` and `PYTHONDONTWRITEBYTECODE` for cleaner logs.
 - Report generation now returns a `502` response when upstream services fail.
 - Topic input is now required and includes a placeholder hint.
 - YOU.com API key is now read from the `YOU_COM_API_KEY` environment variable.
