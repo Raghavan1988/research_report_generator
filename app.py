@@ -91,6 +91,14 @@ def generate_report(topic, merged_content):
    
     return response.choices[0].message.content.strip()
 
+@app.after_request
+def set_security_headers(response):
+    """Apply a small set of conservative security headers to every response."""
+    response.headers.setdefault('X-Content-Type-Options', 'nosniff')
+    response.headers.setdefault('X-Frame-Options', 'SAMEORIGIN')
+    response.headers.setdefault('Referrer-Policy', 'no-referrer')
+    return response
+
 @app.route('/')
 def home():
     return render_template('index.html')
