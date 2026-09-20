@@ -29,11 +29,19 @@ All notable changes to this project are documented in this file.
 - Test covering the home page route.
 - `help` and `freeze` targets in the `Makefile`.
 - Documentation for all configurable environment variables in the README.
+- GitHub Actions CI workflow that runs the test suite on pushes and pull requests.
+- `/robots.txt` route disallowing crawling of generated reports.
+- Maximum topic length validation (500 characters) on report generation.
+- `pyproject.toml` with pytest configuration.
+- `CODEOWNERS` file for default review assignment.
+- Type hints and docstrings on the internal helper functions.
+- `aria-live` announcement of report status for screen readers.
 
 ### Changed
 - Pinned `httpx` below `0.28` to keep the OpenAI client importable.
 - The `/version` endpoint now reports a single `__version__` constant.
 - Docker image sets `PYTHONUNBUFFERED` and `PYTHONDONTWRITEBYTECODE` for cleaner logs.
+- Report generation now handles a missing or malformed JSON body without a `500` error.
 - Report generation now returns a `502` response when upstream services fail.
 - Topic input is now required and includes a placeholder hint.
 - YOU.com API key is now read from the `YOU_COM_API_KEY` environment variable.
