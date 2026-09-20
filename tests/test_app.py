@@ -35,6 +35,12 @@ def test_generate_report_requires_topic():
     assert response.status_code == 400
 
 
+def test_generate_report_rejects_overly_long_topic():
+    client = app.test_client()
+    response = client.post("/generate_report", json={"topic": "x" * 1000})
+    assert response.status_code == 400
+
+
 def test_unknown_route_returns_json_404():
     client = app.test_client()
     response = client.get("/does-not-exist")

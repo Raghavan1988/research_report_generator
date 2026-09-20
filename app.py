@@ -17,6 +17,9 @@ client = OpenAI()
 # Single source of truth for the application version.
 __version__ = "1.0.0"
 
+# Maximum accepted length for a research topic.
+MAX_TOPIC_LENGTH = 500
+
 # Configure logging (level configurable via the LOG_LEVEL environment variable)
 log_level = os.environ.get('LOG_LEVEL', 'INFO').upper()
 logging.basicConfig(level=getattr(logging, log_level, logging.INFO),
@@ -128,6 +131,9 @@ def generate_report_route():
 
     if not topic:
         return jsonify({"error": "Please provide a topic"}), 400
+
+    if len(topic) > MAX_TOPIC_LENGTH:
+        return jsonify({"error": f"Topic must be at most {MAX_TOPIC_LENGTH} characters"}), 400
 
     try:
         # Generate queries
