@@ -62,7 +62,8 @@ def generate_queries(topic):
         return D
     return D
 
-def get_ai_snippets_for_query(query):
+def get_ai_snippets_for_query(query: str) -> dict:
+    """Fetch search results for ``query`` from the YOU.com API."""
     headers = {"X-API-Key": you_com_api_key}
     params = {"query": query}
     return requests.get(
@@ -72,12 +73,14 @@ def get_ai_snippets_for_query(query):
         timeout=30,
     ).json()
 
-def research_query(query):
+def research_query(query: str) -> str:
+    """Return the JSON-encoded search results for ``query``."""
     output= get_ai_snippets_for_query(query)
     output_str = json.dumps(output)
     return output_str
 
-def merge_responses(responses):
+def merge_responses(responses: list) -> str:
+    """Concatenate the snippet text from a list of search responses."""
     merged_content = ""
     for response in responses:
         for result in response.get('results', []):
