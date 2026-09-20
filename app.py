@@ -108,6 +108,13 @@ def set_security_headers(response):
 def home():
     return render_template('index.html')
 
+@app.route('/robots.txt')
+def robots():
+    return app.response_class(
+        "User-agent: *\nDisallow: /static/\n",
+        mimetype='text/plain',
+    )
+
 @app.route('/health')
 def health():
     return jsonify({"status": "ok"})
