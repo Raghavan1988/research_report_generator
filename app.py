@@ -123,7 +123,7 @@ def internal_error(error):
 
 @app.route('/generate_report', methods=['POST'])
 def generate_report_route():
-    data = request.json
+    data = request.get_json(silent=True) or {}
     topic = (data.get('topic') or '').strip()
 
     if not topic:
