@@ -120,6 +120,11 @@ def robots():
         mimetype='text/plain',
     )
 
+@app.route('/favicon.ico')
+def favicon():
+    """Return an empty response so browsers stop logging 404s for the favicon."""
+    return ('', 204)
+
 @app.route('/health')
 def health():
     return jsonify({"status": "ok"})

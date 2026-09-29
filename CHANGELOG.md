@@ -39,6 +39,7 @@ All notable changes to this project are documented in this file.
 - Type hints and docstrings on the internal helper functions.
 - `aria-live` announcement of report status for screen readers.
 - Test covering the `/robots.txt` route.
+- `/favicon.ico` route returning `204 No Content` to avoid noisy 404s.
 
 ### Changed
 - Pinned `httpx` below `0.28` to keep the OpenAI client importable.
