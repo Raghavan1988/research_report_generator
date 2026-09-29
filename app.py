@@ -38,6 +38,9 @@ you_com_api_key = os.environ.get('YOU_COM_API_KEY', '')
 # OpenAI model used for both query generation and report writing
 OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4o-mini')
 
+# Timeout (in seconds) for outbound YOU.com search requests
+REQUEST_TIMEOUT = int(os.environ.get('REQUEST_TIMEOUT', 30))
+
 def generate_queries(topic):
     prompt = f"You are going to create a research report. Understand the topic {topic}. Inorder to understand the topic, think about the queries that you would issue to a web search. \
     Generate 3 queries and return them in a json format following the schema \
@@ -70,7 +73,7 @@ def get_ai_snippets_for_query(query: str) -> dict:
         "https://api.ydc-index.io/search",
         params=params,
         headers=headers,
-        timeout=30,
+        timeout=REQUEST_TIMEOUT,
     ).json()
 
 def research_query(query: str) -> str:

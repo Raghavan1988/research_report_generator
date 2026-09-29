@@ -52,6 +52,7 @@ All notable changes to this project are documented in this file.
 - Server port is now configurable via the `PORT` environment variable.
 - OpenAI model is now configurable via the `OPENAI_MODEL` environment variable.
 - Maximum topic length is now configurable via the `MAX_TOPIC_LENGTH` environment variable.
+- YOU.com search request timeout is now configurable via the `REQUEST_TIMEOUT` environment variable.
 - Fixed the clone URL in the README to point to the actual repository.
 - Search requests now use a timeout and no longer duplicate the query parameter.
 - Replaced `print` statements with structured logging.
