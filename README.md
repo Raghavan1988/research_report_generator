@@ -13,6 +13,7 @@
 - [Folder Structure](#folder-structure)
 - [Algorithm](#algorithm)
 - [Usage](#usage)
+- [Running Tests](#running-tests)
 - [API Endpoints](#api-endpoints)
 - [Deployment](#deployment)
 - [Code Explanation](#code-explanation)
@@ -138,6 +139,20 @@ The following steps outline the algorithm used in the `app.py` file to generate 
     - Enter the topic you want to research.
     - Click on "Generate Report."
     - Once the report is generated, click on the provided link to view the report.
+
+## Running Tests
+
+The project uses [pytest](https://docs.pytest.org/). Install the dependencies and run:
+
+```bash
+python -m pytest
+```
+
+Or use the Makefile shortcut:
+
+```bash
+make test
+```
 
 ## API Endpoints
 
