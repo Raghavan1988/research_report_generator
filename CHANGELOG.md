@@ -24,6 +24,7 @@ All notable changes to this project are documented in this file.
 - JSON error handler for `500` responses.
 - Request body size limit of 1 MB.
 - Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`) on all responses.
+- `Permissions-Policy` header disabling geolocation, microphone, and camera access.
 - Configurable logging level via the `LOG_LEVEL` environment variable.
 - Footer with a GitHub repository link in the web interface.
 - Test covering the home page route.
