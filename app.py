@@ -17,8 +17,8 @@ client = OpenAI()
 # Single source of truth for the application version.
 __version__ = "1.0.0"
 
-# Maximum accepted length for a research topic.
-MAX_TOPIC_LENGTH = 500
+# Maximum accepted length for a research topic (configurable via MAX_TOPIC_LENGTH).
+MAX_TOPIC_LENGTH = int(os.environ.get('MAX_TOPIC_LENGTH', 500))
 
 # Configure logging (level configurable via the LOG_LEVEL environment variable)
 log_level = os.environ.get('LOG_LEVEL', 'INFO').upper()
