@@ -38,6 +38,7 @@ All notable changes to this project are documented in this file.
 - `CODEOWNERS` file for default review assignment.
 - Type hints and docstrings on the internal helper functions.
 - `aria-live` announcement of report status for screen readers.
+- Test covering the `/robots.txt` route.
 
 ### Changed
 - Pinned `httpx` below `0.28` to keep the OpenAI client importable.

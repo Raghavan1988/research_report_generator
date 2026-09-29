@@ -41,6 +41,14 @@ def test_generate_report_rejects_overly_long_topic():
     assert response.status_code == 400
 
 
+def test_robots_txt_disallows_static():
+    client = app.test_client()
+    response = client.get("/robots.txt")
+    assert response.status_code == 200
+    assert response.mimetype == "text/plain"
+    assert "Disallow: /static/" in response.get_data(as_text=True)
+
+
 def test_unknown_route_returns_json_404():
     client = app.test_client()
     response = client.get("/does-not-exist")
