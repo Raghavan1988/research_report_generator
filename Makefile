@@ -1,4 +1,4 @@
-.PHONY: help install run prod test clean freeze
+.PHONY: help install run prod test lint clean freeze
 
 help:
 	@echo "Available targets:"
@@ -6,6 +6,7 @@ help:
 	@echo "  run      Run the development server"
 	@echo "  prod     Run the production server with gunicorn"
 	@echo "  test     Run the test suite"
+	@echo "  lint     Byte-compile all Python sources to catch syntax errors"
 	@echo "  freeze   Write installed package versions to requirements.lock"
 	@echo "  clean    Remove generated reports and caches"
 
@@ -20,6 +21,9 @@ run:
 
 test:
 	python -m pytest -q
+
+lint:
+	python -m compileall -q app.py tests
 
 prod:
 	gunicorn app:app --bind 0.0.0.0:$${PORT:-5000}
